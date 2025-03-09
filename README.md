@@ -20,6 +20,7 @@ This query calculates the average time a taxi waits for its next fare after drop
 Graph:
 
 ![pilt](https://github.com/user-attachments/assets/e9a2e50a-266d-41f8-8701-b616b4dfb780)
+
 This bar chart shows the average taxi waiting time by drop-off borough, based on 20,000 rows of data.
 Staten Island has the longest waiting time, much higher than other boroughs. This likely means fewer taxis and lower demand.
 Manhattan has the shortest waiting time, which makes sense because of its high taxi availability and frequent ride requests.
@@ -32,6 +33,7 @@ In order to calculate how many taxi trips started and ended within the same boro
 Graph: 
 
 ![pilt](https://github.com/user-attachments/assets/85cb9131-7eb4-49ac-a115-2041ce154f85)
+
 From these results, based on 20 000 rows of data, it is shown that the most same-borough trips are dominating in Manhattan, Staten Island has the lowest number of same-borough trips. 
 
 ### Query 4 - The number of trips that started in one borough and ended in another one
