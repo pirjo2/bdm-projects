@@ -10,6 +10,12 @@ Students: Anna Maria Tammin, Maria Anett Kaha, Pirjo Vainjärv, Eidi Paas
 
 ## Requirements
 
+    Start Docker Desktop App
+    Open project_n folder in the command line
+    Run "docker compose up -d"
+    Go to page: http://localhost:8888/
+    Run "docker compose down"
+
 ## Note for Students
 
 * Clone the created repository offline;
