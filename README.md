@@ -36,7 +36,8 @@ From these results, based on 20 000 rows of data, it is shown that the most same
 
 ### Query 4 - The number of trips that started in one borough and ended in another one
 To analyze the trips between different boroughs, the dataset was filtered to count the number of trips where the pickup and dropoff locations were in different boroughs. We also grouped the data by pickup and dropoff borough and summed the number of such trips in every possible variation. The result, stored in different_borough_trips_df  ,represented the numbers of such trips. We again gave  the boroughs the names instead of the numeric code. The result on number of trips that started in one borough and ended in another one resulted in 3065 trips based on 20 000 rows of data.  
-Conclusions
+
+### Conclusions
 The project successfully analyzed New York City taxi data by applying structured data transformations and borough mapping. The results showed that the average taxi utilization rate was 50.29%, with an average idle time of 10,895.78 seconds (approximately 3 hours). Manhattan had the shortest waiting time, while Staten Island had the longest, with an average idle time exceeding 4 hours in some cases. Based on 20,000 trips, most same-borough trips occurred in Manhattan, while Staten Island had the fewest. Inter-borough trips followed expected patterns, with high traffic between neighboring boroughs. These insights provide a clearer understanding of taxi movement and demand distribution in New York City.
 
 ## Requirements
