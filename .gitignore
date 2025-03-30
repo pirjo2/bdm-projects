@@ -9,6 +9,8 @@
 
 ### Datasets ###
 data/
+input/
+output/
 
 ### Jupyter Notebooks ###
 .ipynb_checkpoints/
