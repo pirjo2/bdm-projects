@@ -11,3 +11,20 @@ services:
     volumes:
       - "./:/home/jovyan/" # map a local folder to the Jupyter workspace folder
       - "../data/:/home/jovyan/input/" # map a local folder to the Jupyter workspace folder
+    environment:
+      - SPARK_MASTER_URL=spark://pyspark:7077  # If you're running Spark in standalone mode
+      - SPARK_DRIVER_MEMORY=8g  # Set driver memory
+      - SPARK_EXECUTOR_MEMORY=24g  # Set executor memory
+      - SPARK_EXECUTOR_MEMORY_OVERHEAD=2g  # Set memory overhead for each executor
+    networks:
+      - spark-network
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'  # Allocate at least 4 CPUs
+          memory: 32G  # Ensure total container memory is sufficient
+    restart: unless-stopped
+
+networks:
+  spark-network:
+    driver: bridge
