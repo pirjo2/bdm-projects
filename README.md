@@ -4,7 +4,7 @@
 
 Project [Big Data](https://courses.cs.ut.ee/2025/bdm/spring/Main/HomePage) is provided by [University of Tartu](https://courses.cs.ut.ee/).
 
-Students: Anna Maria Tammin, Maria Anett Kaha, Pirjo Vainjärv, Eidi Paas
+Students: Pirjo Vainjärv, Eidi Paas
 
 ## Data Sources
 
