@@ -6,6 +6,8 @@ Project [Big Data](https://courses.cs.ut.ee/2025/bdm/spring/Main/HomePage) is pr
 
 Students: Pirjo Vainjärv, Eidi Paas
 
+# Project nr 3: Flight Interconnected Data Analysis
+
 ## Data Sources
 The data used for the analysis was provided in CSV format and includes details on flights, specifically:
 - ORIGIN: The airport of departure.
