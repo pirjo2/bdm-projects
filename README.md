@@ -65,13 +65,20 @@ count
 - Triangle Count: The number of triangles involving each airport.
 First, we computed the in-degree by counting how many flights arrive at each airport (dst). Then, we calculated the out-degree by counting how many flights depart from each airport (src). Finally, we combined both to compute the total degree for each airport by summing in-degree and out-degree. Missing values were handled using coalesce.
 
-Calculating the number of unique triangles in the graph by joining edges to form two-step paths (A → B → C) and then checking if a closing edge (C → A) exists. To avoid duplicate counting, we sorted and filtered nodes (A < B < C). 
+Calculating the number of unique triangles in the graph by joining edges to form two-step paths (A → B → C) and then checking if a closing edge (C → A) exists. To avoid duplicate counting, we sorted and filtered nodes (A < B < C).  Top 3 Airports by Triangle Count were ATL, ORD and DFW.
+
+![query1_top10_triangle_count](https://github.com/user-attachments/assets/4da3b01f-5048-4798-a05d-d393a0c13492)
+
 
 # Query 2 - Compute the total number of triangles in the graph
 The code calculates and displays the number of triangles each airport is part of in the graph. Each triangle is a set of three airports that are all interconnected by flights. The result was validated against triangleCount() function result. The result of Q2 was the total of triangles in the graph is 16015.
 
 # Query 3 - Compute a centrality measure of your choice natively on Spark using Graphframes
-Centrality measures help to identify the most important airports based on their position in the network. For this project, we selected degree centrality, which is computed by the total degree of each airport. We normalized the total degree by dividing it by the total number of airports in the data. The result was validated … As of the result the top 1st airport is ATL airport.
+Centrality measures help to identify the most important airports based on their position in the network. For this project, we selected degree centrality, which is computed by the total degree of each airport. We normalized the total degree by dividing it by the total number of airports in the data. The result of degree Centrality was validated, by using the built-in GraphFrames .degrees method.  It calculated the total degreefor each airport. Then we normalized the degree values (just like in our manual implementation), by dividing it with the total nr of airports. 
+This ensures the values were comparable. As of the result the top 1st airport is ATL airport.
+
+![query3_top10_degree_centrality](https://github.com/user-attachments/assets/e011f714-1562-4333-a0ce-7874b6d9c42f)
+
 
 # Query 4 - Implement the PageRank algorithm natively on Spark using Graphframes
 The code first implements the PageRank algorithm manually. It starts by assigning an initial rank of 1.0 to every airport in the graph. Then, it calculates how many outgoing connections each airport has. It simulates how each airport passes part of its rank to connected airports over 10 iterations. If an airport has no outgoing flights, its rank is evenly spread across all airports. The new rank of each airport is calculated using a damping factor of 0.85 to include both the received contributions and a small random teleportation factor. After the iterations, the ranks are scaled and normalized so that the total rank equals the number of airports.
