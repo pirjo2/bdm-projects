@@ -6,24 +6,7 @@ Project [Big Data](https://courses.cs.ut.ee/2025/bdm/spring/Main/HomePage) is pr
 
 Students: Pirjo Vainjärv, Eidi Paas
 
-# Project nr 3: Flight Interconnected Data Analysis
-
-## Data Sources
-The data used for the analysis was provided in CSV format and includes details on flights, specifically:
-- ORIGIN: The airport of departure.
-- DEST: The airport of arrival.
-- FL_DATE: The flight date.
-- DISTANCE: The flight distance in miles.
-- The dataset was loaded into Spark for analysis.
-
-## Data Transformation
-We performed data transformation and cleaning using Spark DataFrames, rows with null values were dropped.
-We selected the columns ORIGIN, DEST, FL_DATE, and DISTANCE to focus on the necessary flight details for the graph construction.
-Graph construction:
-- Vertices (airports): Each unique airport is treated as a vertex.
-- Edges (flights): Each flight between two airports is treated as an edge.
-The graph is created using GraphFrames with airports as vertices and flights as edges.
-After the transformation, there were a total of 296 airports and a total of 6429338 flights in the data.
+# Project nr 4: Airline Delay and Cancellation Prediction with Spark ML
 
 ## How to run
 
@@ -31,10 +14,10 @@ After the transformation, there were a total of 296 airports and a total of 6429
     Ensure that the Docker Desktop application is running on your system.
 
 2.  **Open Project Directory in Command Line**:
-    Open your command line interface (e.g., Terminal on macOS/Linux, Command Prompt or PowerShell on Windows) and navigate to the project directory (`project_3`).
+    Open your command line interface (e.g., Terminal on macOS/Linux, Command Prompt or PowerShell on Windows) and navigate to the project directory (`project_4`).
 
     ```bash
-    cd project_3
+    cd project_4
     ```
 
 3.  **Run Docker Compose**:
@@ -57,39 +40,6 @@ After the transformation, there were a total of 296 airports and a total of 6429
     ```bash
     docker compose down
     ```
-
-## Queries  NB! Please see pdf file of report for screenshots of the results
-# Query 1 -  Compute different statistics : in-degree, out-degree, total degree and triangle
-count
-- In-degree: The number of flights arriving at an airport.
-- Out-degree: The number of flights departing from an airport.
-- Total Degree: The sum of in-degree and out-degree for each airport.
-- Triangle Count: The number of triangles involving each airport.
-First, we computed the in-degree by counting how many flights arrive at each airport (dst). Then, we calculated the out-degree by counting how many flights depart from each airport (src). Finally, we combined both to compute the total degree for each airport by summing in-degree and out-degree. Missing values were handled using coalesce.
-
-Calculating the number of unique triangles in the graph by joining edges to form two-step paths (A → B → C) and then checking if a closing edge (C → A) exists. To avoid duplicate counting, we sorted and filtered nodes (A < B < C).  Top 3 Airports by Triangle Count were ATL, ORD and DFW.
-
-![query1_top10_triangle_count](https://github.com/user-attachments/assets/4da3b01f-5048-4798-a05d-d393a0c13492)
-
-
-# Query 2 - Compute the total number of triangles in the graph
-The code calculates and displays the number of triangles each airport is part of in the graph. Each triangle is a set of three airports that are all interconnected by flights. The result was validated against triangleCount() function result. The result of Q2 was the total of triangles in the graph is 16015.
-
-# Query 3 - Compute a centrality measure of your choice natively on Spark using Graphframes
-Centrality measures help to identify the most important airports based on their position in the network. For this project, we selected degree centrality, which is computed by the total degree of each airport. We normalized the total degree by dividing it by the total number of airports in the data. The result of degree Centrality was validated, by using the built-in GraphFrames .degrees method.  It calculated the total degreefor each airport. Then we normalized the degree values (just like in our manual implementation), by dividing it with the total nr of airports. 
-This ensures the values were comparable. As of the result the top 1st airport is ATL airport.
-
-![query3_top10_degree_centrality](https://github.com/user-attachments/assets/e011f714-1562-4333-a0ce-7874b6d9c42f)
-
-
-# Query 4 - Implement the PageRank algorithm natively on Spark using Graphframes
-The code first implements the PageRank algorithm manually. It starts by assigning an initial rank of 1.0 to every airport in the graph. Then, it calculates how many outgoing connections each airport has. It simulates how each airport passes part of its rank to connected airports over 10 iterations. If an airport has no outgoing flights, its rank is evenly spread across all airports. The new rank of each airport is calculated using a damping factor of 0.85 to include both the received contributions and a small random teleportation factor. After the iterations, the ranks are scaled and normalized so that the total rank equals the number of airports.
-After this, the same PageRank calculation is done using the built-in GraphFrames method. The damping factor and iteration count are kept the same. The results are also scaled and normalized to be comparable with the manual version. Finally, the airports are ranked by importance, and the top ten are displayed. As a result, the most important airport is ATL.
-
-# Query 5 - Find the group of the most connected airports
-The group of the most connected airports are connected via edges between each other. The algorithm logic, Breadth-First Search (BFS), was looked up from this source: https://cp-algorithms.com/graph /search-for-connected-components.html .
-The dataset is cleaned by removing rows with missing origin or destination values. A list of flight connections is created, and reversed edges are added to make the graph undirected. A manual search starting from one airport is used to find all airports connected to it. This helps find the largest group of connected airports. This resulted in 1 big component, thus every airport is connected with some path to it.
-The same process is repeated using GraphFrames. The built-in connectedComponents() function finds all groups of connected airports, and the largest group is selected based on size. This method approved of our finding of 1 big component, the picture shows only 10 of the airports in that component (eg. when you print it out, you will get all of the airports names).
 
 
 ## Note for Students
